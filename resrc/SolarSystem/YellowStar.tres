@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://resrc/SolarSystem.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+description = "Yellow stars are the size of our Sun and you can find plenty of planets worth colonizing around them."
+uniqe_buildings = [  ]
+min_planets = 4
+max_planets = 5

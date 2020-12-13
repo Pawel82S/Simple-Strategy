@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://resrc/SolarSystem.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+description = "Red Dwarfs are small, not very hot stars that have it's best years long time past."
+uniqe_buildings = [  ]
+min_planets = 2
+max_planets = 4

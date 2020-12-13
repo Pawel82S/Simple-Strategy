@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://resrc/SolarSystem.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+description = "Red Giants are stars that fuel has ended. They most likely destroyed internal plantes. You wont see many planets in systems where those type of stars are."
+uniqe_buildings = [  ]
+min_planets = 1
+max_planets = 3

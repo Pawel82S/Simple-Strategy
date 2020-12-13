@@ -1,0 +1,78 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Resource",
+"class": "Building",
+"language": "GDScript",
+"path": "res://resrc/Building.gd"
+}, {
+"base": "Reference",
+"class": "GalaxyGenerator",
+"language": "GDScript",
+"path": "res://src/Game/GalaxyGenerator.gd"
+}, {
+"base": "Resource",
+"class": "Planet",
+"language": "GDScript",
+"path": "res://resrc/Planet.gd"
+}, {
+"base": "Resource",
+"class": "Ship",
+"language": "GDScript",
+"path": "res://resrc/Ship.gd"
+}, {
+"base": "Reference",
+"class": "SolarNames",
+"language": "GDScript",
+"path": "res://src/SolarNames.gd"
+}, {
+"base": "Resource",
+"class": "SolarSystem",
+"language": "GDScript",
+"path": "res://resrc/SolarSystem.gd"
+}, {
+"base": "Resource",
+"class": "Technology",
+"language": "GDScript",
+"path": "res://resrc/Technology.gd"
+} ]
+_global_script_class_icons={
+"Building": "",
+"GalaxyGenerator": "",
+"Planet": "",
+"Ship": "",
+"SolarNames": "",
+"SolarSystem": "",
+"Technology": ""
+}
+
+[application]
+
+config/name="Simple Strategy"
+run/main_scene="res://src/GUI/MainMenu.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Data="*res://src/Autoloads/Data.gd"
+Func="*res://src/Autoloads/Functions.gd"
+
+[display]
+
+window/size/width=1600
+window/size/height=850
+window/dpi/allow_hidpi=true
+window/stretch/mode="2d"
+
+[rendering]
+
+environment/default_clear_color=Color( 0, 0, 0, 1 )
+environment/default_environment="res://default_env.tres"

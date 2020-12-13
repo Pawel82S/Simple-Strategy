@@ -1,0 +1,774 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/GUI/NewGameMenu/NewGameMenu.gd" type="Script" id=1]
+[ext_resource path="res://resrc/Theme.tres" type="Theme" id=2]
+[ext_resource path="res://resrc/Bold 32.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/GUI/MiniMap.tscn" type="PackedScene" id=4]
+
+[sub_resource type="InputEventAction" id=1]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
+
+[node name="NewGameMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CategoriesContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 1600.0
+margin_bottom = 807.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RaceSettings" type="VBoxContainer" parent="VBoxContainer/CategoriesContainer"]
+margin_right = 786.0
+margin_bottom = 807.0
+size_flags_horizontal = 3
+
+[node name="RaceLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings"]
+margin_right = 786.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 3 )
+text = "Player race settings"
+align = 1
+
+[node name="RaceNameContainer" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings"]
+margin_top = 37.0
+margin_right = 786.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+
+[node name="NameLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceNameContainer"]
+margin_right = 81.0
+margin_bottom = 27.0
+size_flags_vertical = 3
+text = "Race name:"
+align = 2
+valign = 1
+
+[node name="NameEdit" type="LineEdit" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceNameContainer"]
+margin_left = 85.0
+margin_right = 786.0
+margin_bottom = 27.0
+size_flags_horizontal = 3
+text = "Player race"
+max_length = 30
+placeholder_text = "Race name - 30 characters max"
+
+[node name="LabelsAndValues" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings"]
+margin_top = 68.0
+margin_right = 786.0
+margin_bottom = 190.0
+
+[node name="Labels" type="VBoxContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues"]
+margin_right = 84.0
+margin_bottom = 122.0
+
+[node name="ResearchLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Labels"]
+margin_right = 84.0
+margin_bottom = 17.0
+size_flags_vertical = 2
+text = "Research:"
+align = 2
+valign = 1
+
+[node name="ProductionLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Labels"]
+margin_top = 21.0
+margin_right = 84.0
+margin_bottom = 38.0
+size_flags_vertical = 2
+text = "Production:"
+align = 2
+valign = 1
+
+[node name="CultureLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Labels"]
+margin_top = 42.0
+margin_right = 84.0
+margin_bottom = 59.0
+size_flags_vertical = 2
+text = "Culture:"
+align = 2
+valign = 1
+
+[node name="GrowthLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Labels"]
+margin_top = 63.0
+margin_right = 84.0
+margin_bottom = 80.0
+size_flags_vertical = 2
+text = "Growth:"
+align = 2
+valign = 1
+
+[node name="WealthkLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Labels"]
+margin_top = 84.0
+margin_right = 84.0
+margin_bottom = 101.0
+size_flags_vertical = 2
+text = "Wealth:"
+align = 2
+valign = 1
+
+[node name="ShipsLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Labels"]
+margin_top = 105.0
+margin_right = 84.0
+margin_bottom = 122.0
+size_flags_vertical = 2
+text = "Ships:"
+align = 2
+valign = 1
+
+[node name="Values" type="VBoxContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues"]
+margin_left = 88.0
+margin_right = 786.0
+margin_bottom = 122.0
+size_flags_horizontal = 3
+
+[node name="ResearchValues" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values"]
+margin_right = 698.0
+margin_bottom = 17.0
+size_flags_horizontal = 3
+
+[node name="ResearchSlider" type="HSlider" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/ResearchValues"]
+margin_right = 662.0
+margin_bottom = 16.0
+hint_tooltip = "Research modifier decides how fast your race will be gaining research points"
+size_flags_horizontal = 3
+min_value = -3.0
+max_value = 3.0
+step = 0.5
+tick_count = 13
+ticks_on_borders = true
+
+[node name="ResearchValueLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/ResearchValues"]
+margin_left = 666.0
+margin_right = 698.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 32, 0 )
+size_flags_vertical = 1
+text = "0"
+align = 2
+valign = 1
+
+[node name="ProductionValues" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values"]
+margin_top = 21.0
+margin_right = 698.0
+margin_bottom = 38.0
+size_flags_horizontal = 3
+
+[node name="ProductionSlider" type="HSlider" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/ProductionValues"]
+margin_right = 662.0
+margin_bottom = 16.0
+hint_tooltip = "Production modifier decides how fast your race will be gaining production points"
+size_flags_horizontal = 3
+min_value = -3.0
+max_value = 3.0
+step = 0.5
+tick_count = 13
+ticks_on_borders = true
+
+[node name="ProductionValueLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/ProductionValues"]
+margin_left = 666.0
+margin_right = 698.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 32, 0 )
+size_flags_vertical = 1
+text = "0"
+align = 2
+valign = 1
+
+[node name="CultureValues" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values"]
+margin_top = 42.0
+margin_right = 698.0
+margin_bottom = 59.0
+size_flags_horizontal = 3
+
+[node name="CultureSlider" type="HSlider" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/CultureValues"]
+margin_right = 662.0
+margin_bottom = 16.0
+hint_tooltip = "Culture modifier decides how fast your race will be gaining culture points"
+size_flags_horizontal = 3
+min_value = -3.0
+max_value = 3.0
+step = 0.5
+tick_count = 13
+ticks_on_borders = true
+
+[node name="CultureValueLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/CultureValues"]
+margin_left = 666.0
+margin_right = 698.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 32, 0 )
+size_flags_vertical = 1
+text = "0"
+align = 2
+valign = 1
+
+[node name="GrowthValues" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values"]
+margin_top = 63.0
+margin_right = 698.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+
+[node name="GrowthSlider" type="HSlider" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/GrowthValues"]
+margin_right = 662.0
+margin_bottom = 16.0
+hint_tooltip = "Growth modifier decides how fast your population will grow on planets"
+size_flags_horizontal = 3
+min_value = -3.0
+max_value = 3.0
+step = 0.5
+tick_count = 13
+ticks_on_borders = true
+
+[node name="GrowthValueLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/GrowthValues"]
+margin_left = 666.0
+margin_right = 698.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 32, 0 )
+size_flags_vertical = 1
+text = "0"
+align = 2
+valign = 1
+
+[node name="WealthValues" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values"]
+margin_top = 84.0
+margin_right = 698.0
+margin_bottom = 101.0
+size_flags_horizontal = 3
+
+[node name="WealthSlider" type="HSlider" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/WealthValues"]
+margin_right = 662.0
+margin_bottom = 16.0
+hint_tooltip = "<CHANGE ME>"
+size_flags_horizontal = 3
+min_value = -3.0
+max_value = 3.0
+step = 0.5
+tick_count = 13
+ticks_on_borders = true
+
+[node name="WealthValueLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/WealthValues"]
+margin_left = 666.0
+margin_right = 698.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 32, 0 )
+size_flags_vertical = 1
+text = "0"
+align = 2
+valign = 1
+
+[node name="ShipsValues" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values"]
+margin_top = 105.0
+margin_right = 698.0
+margin_bottom = 122.0
+size_flags_horizontal = 3
+
+[node name="ShipsSlider" type="HSlider" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/ShipsValues"]
+margin_right = 662.0
+margin_bottom = 16.0
+hint_tooltip = "<CHANGE ME>"
+size_flags_horizontal = 3
+min_value = -3.0
+max_value = 3.0
+step = 0.5
+tick_count = 13
+ticks_on_borders = true
+
+[node name="ShipsValueLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/ShipsValues"]
+margin_left = 666.0
+margin_right = 698.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 32, 0 )
+size_flags_vertical = 1
+text = "0"
+align = 2
+valign = 1
+
+[node name="RaceBalanceContainer" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings"]
+margin_top = 194.0
+margin_right = 786.0
+margin_bottom = 211.0
+
+[node name="BalanceLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceBalanceContainer"]
+margin_right = 292.0
+margin_bottom = 17.0
+text = "Balance must be zero for race to be valid:"
+align = 2
+
+[node name="BalanceValueLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceBalanceContainer"]
+margin_left = 296.0
+margin_right = 786.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 150, 0 )
+size_flags_horizontal = 3
+text = "0"
+align = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings"]
+margin_top = 215.0
+margin_right = 786.0
+margin_bottom = 265.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="RaceDescriptionContainer" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings"]
+margin_top = 269.0
+margin_right = 786.0
+margin_bottom = 471.0
+
+[node name="DescriptionLabels" type="VBoxContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceDescriptionContainer"]
+margin_right = 733.0
+margin_bottom = 202.0
+size_flags_horizontal = 3
+
+[node name="ResearchDescription" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceDescriptionContainer/DescriptionLabels"]
+margin_right = 733.0
+margin_bottom = 37.0
+text = "Research speed: points are generated in research labs on planets by people. The more research labs and people you have the faster you will be researching technologies."
+autowrap = true
+
+[node name="ProductionDescription" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceDescriptionContainer/DescriptionLabels"]
+margin_top = 41.0
+margin_right = 733.0
+margin_bottom = 78.0
+text = "Production speed: points are made in factories on planets by people. The more factories and people you have the faster you will be able to build ships, stations and buildings."
+autowrap = true
+
+[node name="CultureDescription" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceDescriptionContainer/DescriptionLabels"]
+margin_top = 82.0
+margin_right = 733.0
+margin_bottom = 119.0
+text = "Culture: allows player to control more planets. Each culture level allows of control one planet. Race cannot control more planets than its level of coulture."
+autowrap = true
+
+[node name="GrowthDescription" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceDescriptionContainer/DescriptionLabels"]
+margin_top = 123.0
+margin_right = 733.0
+margin_bottom = 160.0
+text = "Growth speed: is responsible for your people ability to reproduce. It also affects how much production and research points youre race will be generating per turn."
+autowrap = true
+
+[node name="WealthDescription" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceDescriptionContainer/DescriptionLabels"]
+margin_top = 164.0
+margin_right = 733.0
+margin_bottom = 181.0
+text = "Wealth: <INSERT DESCRIPTION HERE>"
+autowrap = true
+
+[node name="ShipsDescription" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceDescriptionContainer/DescriptionLabels"]
+margin_top = 185.0
+margin_right = 733.0
+margin_bottom = 202.0
+text = "Ships: <INSERT DESCRIPTION HERE>"
+autowrap = true
+
+[node name="DescriptionValues" type="VBoxContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceDescriptionContainer"]
+margin_left = 737.0
+margin_right = 786.0
+margin_bottom = 202.0
+rect_min_size = Vector2( 32, 0 )
+
+[node name="ResearchBonusLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceDescriptionContainer/DescriptionValues"]
+margin_right = 49.0
+margin_bottom = 30.0
+size_flags_vertical = 7
+text = "100.0%"
+align = 2
+valign = 1
+
+[node name="ProductionBonusLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceDescriptionContainer/DescriptionValues"]
+margin_top = 34.0
+margin_right = 49.0
+margin_bottom = 64.0
+size_flags_vertical = 7
+text = "100.0%"
+align = 2
+valign = 1
+
+[node name="CultureBonusLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceDescriptionContainer/DescriptionValues"]
+margin_top = 68.0
+margin_right = 49.0
+margin_bottom = 99.0
+size_flags_vertical = 7
+text = "100.0%"
+align = 2
+valign = 1
+
+[node name="GrowthBonusLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceDescriptionContainer/DescriptionValues"]
+margin_top = 103.0
+margin_right = 49.0
+margin_bottom = 133.0
+size_flags_vertical = 7
+text = "100.0%"
+align = 2
+valign = 1
+
+[node name="WealthBonusLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceDescriptionContainer/DescriptionValues"]
+margin_top = 137.0
+margin_right = 49.0
+margin_bottom = 167.0
+size_flags_vertical = 7
+text = "100.0%"
+align = 2
+valign = 1
+
+[node name="ShipsBonusLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/RaceDescriptionContainer/DescriptionValues"]
+margin_top = 171.0
+margin_right = 49.0
+margin_bottom = 202.0
+size_flags_vertical = 7
+text = "100.0%"
+align = 2
+valign = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings"]
+margin_top = 475.0
+margin_right = 786.0
+margin_bottom = 525.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="AISettingsContainer" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings"]
+margin_top = 529.0
+margin_right = 786.0
+margin_bottom = 552.0
+
+[node name="AILabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/AISettingsContainer"]
+margin_top = 3.0
+margin_right = 93.0
+margin_bottom = 20.0
+text = "AI Difficulty:"
+
+[node name="AiDifficultyButton" type="OptionButton" parent="VBoxContainer/CategoriesContainer/RaceSettings/AISettingsContainer"]
+margin_left = 97.0
+margin_right = 181.0
+margin_bottom = 23.0
+text = "Normal"
+items = [ "Very Easy", null, false, 0, null, "Easy", null, false, 1, null, "Normal", null, false, 2, null, "Hard", null, false, 3, null, "Very Hard", null, false, 4, null, "Crazy", null, false, 5, null, "I'm feeling lucky!", null, false, 6, null ]
+selected = 2
+
+[node name="AIDescriptionLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings/AISettingsContainer"]
+margin_left = 185.0
+margin_top = 3.0
+margin_right = 613.0
+margin_bottom = 20.0
+text = "AI does not have any advantages over player (balance = 0)). "
+
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer/CategoriesContainer/RaceSettings"]
+margin_top = 556.0
+margin_right = 786.0
+margin_bottom = 606.0
+rect_min_size = Vector2( 0, 50 )
+
+[node name="HintLabel" type="Label" parent="VBoxContainer/CategoriesContainer/RaceSettings"]
+visible = false
+margin_top = 650.0
+margin_right = 786.0
+margin_bottom = 807.0
+text = "DEV NOTE: For your first few games I recomment not adjusting race sliders and only adjust difficulty level. After 2 or 3 games adjust AI Difficulty and/or change race parameters. AI is slow but is 'inteligent' so it will
+try to kill you no matter what settings you choose. Difficulty level has big influence on AI behaviour. You will see that AI turns take more time on higher difficulty levels, because AI takes time to analyze your and
+self situation. AI decisions are based on genetic neuron networks (GNN) systems designed for this game exclusevliy. BTW: this AI is learning all the time.
+
+If you wish to reset AI to level 0 delete: \"learned.ai\" file."
+autowrap = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/CategoriesContainer"]
+margin_left = 790.0
+margin_right = 810.0
+margin_bottom = 807.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 20, 0 )
+rect_pivot_offset = Vector2( 10, 0 )
+
+[node name="GameSettings" type="VBoxContainer" parent="VBoxContainer/CategoriesContainer"]
+margin_left = 814.0
+margin_right = 1600.0
+margin_bottom = 807.0
+size_flags_horizontal = 3
+
+[node name="GameLabel" type="Label" parent="VBoxContainer/CategoriesContainer/GameSettings"]
+margin_right = 786.0
+margin_bottom = 33.0
+custom_fonts/font = ExtResource( 3 )
+text = "Game settings"
+align = 1
+
+[node name="GalaxySizeContainer" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/GameSettings"]
+margin_top = 37.0
+margin_right = 786.0
+margin_bottom = 74.0
+
+[node name="SizeLabel" type="Label" parent="VBoxContainer/CategoriesContainer/GameSettings/GalaxySizeContainer"]
+margin_top = 10.0
+margin_right = 86.0
+margin_bottom = 27.0
+text = "Galaxy size:"
+
+[node name="SizeOptionButton" type="OptionButton" parent="VBoxContainer/CategoriesContainer/GameSettings/GalaxySizeContainer"]
+margin_left = 90.0
+margin_right = 230.0
+margin_bottom = 37.0
+text = "Very Small (4p)"
+items = [ "Very Small (4p)", null, false, 0, null, "Small (6p)", null, false, 1, null, "Normal (8p)", null, false, 2, null, "Large (12p)", null, false, 3, null, "Very Large (16p)", null, false, 4, null, "Enormous (20p)", null, false, 5, null, "Galaxy (30p)", null, false, 6, null, "Custom (2-50p)", null, false, 7, null ]
+selected = 0
+
+[node name="GalaxyDesciptionLabel" type="Label" parent="VBoxContainer/CategoriesContainer/GameSettings/GalaxySizeContainer"]
+margin_left = 234.0
+margin_right = 786.0
+margin_bottom = 37.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "This galaxy size is perfect for beginners and short games. You will be playing with 3 AI."
+autowrap = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/CategoriesContainer/GameSettings"]
+margin_top = 78.0
+margin_right = 786.0
+margin_bottom = 113.0
+rect_min_size = Vector2( 0, 35 )
+
+[node name="LabelsAndValues" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/GameSettings"]
+margin_top = 117.0
+margin_right = 786.0
+margin_bottom = 226.0
+
+[node name="Labels" type="VBoxContainer" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues"]
+margin_right = 140.0
+margin_bottom = 101.0
+size_flags_vertical = 0
+
+[node name="PlayersLabel" type="Label" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Labels"]
+margin_right = 140.0
+margin_bottom = 17.0
+size_flags_vertical = 3
+text = "Players:"
+align = 2
+valign = 1
+
+[node name="SystemsLabel" type="Label" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Labels"]
+margin_top = 21.0
+margin_right = 140.0
+margin_bottom = 38.0
+size_flags_vertical = 3
+text = "Systems per player:"
+align = 2
+valign = 1
+
+[node name="WidthLabel" type="Label" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Labels"]
+margin_top = 42.0
+margin_right = 140.0
+margin_bottom = 59.0
+size_flags_vertical = 3
+text = "Galaxy width:"
+align = 2
+valign = 1
+
+[node name="HeightLabel" type="Label" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Labels"]
+margin_top = 63.0
+margin_right = 140.0
+margin_bottom = 80.0
+size_flags_vertical = 3
+text = "Galaxy height:"
+align = 2
+valign = 1
+
+[node name="PreviewLabel" type="Label" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Labels"]
+margin_top = 84.0
+margin_right = 140.0
+margin_bottom = 101.0
+size_flags_vertical = 3
+text = "Galaxy preview:"
+align = 2
+valign = 1
+
+[node name="Values" type="VBoxContainer" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues"]
+margin_left = 144.0
+margin_right = 786.0
+margin_bottom = 109.0
+size_flags_horizontal = 3
+
+[node name="PlayerValues" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values"]
+margin_right = 642.0
+margin_bottom = 17.0
+
+[node name="PlayersSlider" type="HSlider" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values/PlayerValues"]
+margin_right = 613.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = 2.0
+max_value = 50.0
+value = 4.0
+editable = false
+tick_count = 49
+ticks_on_borders = true
+
+[node name="PlayersValueLabel" type="Label" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values/PlayerValues"]
+margin_left = 617.0
+margin_right = 642.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 25, 0 )
+size_flags_vertical = 3
+text = "4"
+align = 2
+valign = 1
+
+[node name="SystemValues" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values"]
+margin_top = 21.0
+margin_right = 642.0
+margin_bottom = 38.0
+
+[node name="SystemSlider" type="HSlider" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values/SystemValues"]
+margin_right = 613.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = 5.0
+max_value = 20.0
+value = 7.0
+editable = false
+tick_count = 16
+ticks_on_borders = true
+
+[node name="SystemValueLabel" type="Label" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values/SystemValues"]
+margin_left = 617.0
+margin_right = 642.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 25, 0 )
+size_flags_vertical = 3
+text = "7"
+align = 2
+valign = 1
+
+[node name="WidthValues" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values"]
+margin_top = 42.0
+margin_right = 642.0
+margin_bottom = 59.0
+
+[node name="WidthSlider" type="HSlider" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values/WidthValues"]
+margin_right = 613.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = 11.0
+value = 17.0
+editable = false
+tick_count = 90
+ticks_on_borders = true
+
+[node name="WidthValueLabel" type="Label" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values/WidthValues"]
+margin_left = 617.0
+margin_right = 642.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 25, 0 )
+size_flags_vertical = 3
+text = "17"
+align = 2
+valign = 1
+
+[node name="HeightValues" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values"]
+margin_top = 63.0
+margin_right = 642.0
+margin_bottom = 80.0
+
+[node name="HeightSlider" type="HSlider" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values/HeightValues"]
+margin_right = 613.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+min_value = 11.0
+value = 17.0
+editable = false
+tick_count = 90
+ticks_on_borders = true
+
+[node name="HeightValueLabel" type="Label" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values/HeightValues"]
+margin_left = 617.0
+margin_right = 642.0
+margin_bottom = 17.0
+rect_min_size = Vector2( 25, 0 )
+size_flags_vertical = 3
+text = "17"
+align = 2
+valign = 1
+
+[node name="PreviewCheckBox" type="CheckBox" parent="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values"]
+margin_top = 84.0
+margin_right = 642.0
+margin_bottom = 109.0
+pressed = true
+button_mask = 3
+text = "Uncheck if you don't want to see map and know how systems are connected (FoW)."
+
+[node name="GalaxyPreviewContainer" type="HBoxContainer" parent="VBoxContainer/CategoriesContainer/GameSettings"]
+margin_top = 230.0
+margin_right = 786.0
+margin_bottom = 807.0
+size_flags_vertical = 3
+
+[node name="MiniMap" parent="VBoxContainer/CategoriesContainer/GameSettings/GalaxyPreviewContainer" instance=ExtResource( 4 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 652.0
+margin_bottom = 577.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GenerateGalaxyButton" type="Button" parent="VBoxContainer/CategoriesContainer/GameSettings/GalaxyPreviewContainer"]
+margin_left = 656.0
+margin_top = 277.0
+margin_right = 786.0
+margin_bottom = 300.0
+size_flags_vertical = 4
+text = "Generate Galaxy"
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 811.0
+margin_right = 1600.0
+margin_bottom = 850.0
+alignment = 1
+
+[node name="BackButton" type="Button" parent="VBoxContainer/ButtonsContainer"]
+margin_left = 688.0
+margin_right = 798.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 3 )
+button_mask = 3
+shortcut = SubResource( 2 )
+text = "< Back"
+
+[node name="StartButton" type="Button" parent="VBoxContainer/ButtonsContainer"]
+margin_left = 802.0
+margin_right = 911.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 3 )
+button_mask = 3
+text = "Start >"
+[connection signal="text_changed" from="VBoxContainer/CategoriesContainer/RaceSettings/RaceNameContainer/NameEdit" to="." method="_on_NameEdit_text_changed"]
+[connection signal="value_changed" from="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/ResearchValues/ResearchSlider" to="." method="_on_ResearchSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/ProductionValues/ProductionSlider" to="." method="_on_ProductionSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/CultureValues/CultureSlider" to="." method="_on_CultureSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/GrowthValues/GrowthSlider" to="." method="_on_GrowthSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/WealthValues/WealthSlider" to="." method="_on_WealthSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/CategoriesContainer/RaceSettings/LabelsAndValues/Values/ShipsValues/ShipsSlider" to="." method="_on_ShipsSlider_value_changed"]
+[connection signal="item_selected" from="VBoxContainer/CategoriesContainer/RaceSettings/AISettingsContainer/AiDifficultyButton" to="." method="_on_AiDifficultyButton_item_selected"]
+[connection signal="item_selected" from="VBoxContainer/CategoriesContainer/GameSettings/GalaxySizeContainer/SizeOptionButton" to="." method="_on_SizeOptionButton_item_selected"]
+[connection signal="value_changed" from="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values/PlayerValues/PlayersSlider" to="." method="_on_PlayersSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values/SystemValues/SystemSlider" to="." method="_on_SystemSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values/WidthValues/WidthSlider" to="." method="_on_WidthSlider_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values/HeightValues/HeightSlider" to="." method="_on_HeightSlider_value_changed"]
+[connection signal="toggled" from="VBoxContainer/CategoriesContainer/GameSettings/LabelsAndValues/Values/PreviewCheckBox" to="." method="_on_PreviewCheckBox_toggled"]
+[connection signal="pressed" from="VBoxContainer/CategoriesContainer/GameSettings/GalaxyPreviewContainer/GenerateGalaxyButton" to="." method="_on_GenerateGalaxyButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonsContainer/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonsContainer/StartButton" to="." method="_on_StartButton_pressed"]
