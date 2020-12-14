@@ -180,33 +180,29 @@ func _get_vectors_in_range(to_x: int, to_y: int, include_center: bool = true, fr
 	
 	return result
 
-# FIXME: Wrong nuber of connections and accessing non existent dictionary on line 207
+
 func _generate_system_connections() -> void:
 	for current_sys_id in system_positions.size():
-		var current_sys_pos := system_path.get_point_position(current_sys_id)
-		if system_path.get_point_connections(current_sys_id).size() >= ConnectionsPerSystem.MAX:
+		var current_sys_pos: Vector2 = system_positions[current_sys_id]
+		var current_sys_connection_ids := system_path.get_point_connections(current_sys_id)
+		if current_sys_connection_ids.size() >= ConnectionsPerSystem.MAX:
 			continue
 		
-		var possible_connections_ids := []
+		var possible_connection_ids := []
 		if _connection_points.has(current_sys_pos):
-			possible_connections_ids = _connection_points[current_sys_pos]
-		print("System %d has %s possible connecitons" % [current_sys_id, possible_connections_ids])
-		if possible_connections_ids.empty():
-			possible_connections_ids = _extend_search_connections(current_sys_pos, Vector2.ONE)
-			print(possible_connections_ids)
+			possible_connection_ids = _connection_points[current_sys_pos]
 		
-		var ids_size := possible_connections_ids.size()
-		var connections_count: int = ConnectionsPerSystem.MIN
-		if ids_size > ConnectionsPerSystem.MIN:
-			connections_count = Func.randi_from_range(ConnectionsPerSystem.MIN, ids_size)
-			
-		for _i in range(connections_count):
-			var target_id := randi() % ids_size
-			var connection_point := system_path.get_point_position(target_id)
-			_connection_points[connection_point].erase(current_sys_id)
-			_connection_points[current_sys_pos].erase(target_id)
-			possible_connections_ids.erase(target_id)
-			system_path.connect_points(current_sys_id, target_id)
+		if possible_connection_ids.empty():
+			# Search for possible connections
+			possible_connection_ids = _extend_search_connections(current_sys_pos, Vector2.ONE)
+		
+		for target_id in possible_connection_ids:
+			if !target_id in current_sys_connection_ids && current_sys_connection_ids.size() < ConnectionsPerSystem.MAX:
+				system_path.connect_points(current_sys_id, target_id)
+				#NOTE: I have to update current system connections because it's passed by value not reference from get_point_connections
+				current_sys_connection_ids = system_path.get_point_connections(current_sys_id)
+		
+	_connect_possible_islands()
 
 
 func _extend_search_connections(current_sys_pos: Vector2, extension_range: Vector2) -> Array:
@@ -224,3 +220,18 @@ func _extend_search_connections(current_sys_pos: Vector2, extension_range: Vecto
 		return result
 	else:
 		return _extend_search_connections(current_sys_pos, extension_range + Vector2.ONE)
+
+
+func _connect_possible_islands() -> void:
+	var island1 = _get_island_ids(0)
+	print(island1.sort())
+
+
+func _get_island_ids(start_id: int, travelled_ids: Array = []) -> Array:
+	var result := travelled_ids
+	result.append(start_id)
+	var neighbours := system_path.get_point_connections(start_id)
+	for neighbour in neighbours:
+		if !neighbour in travelled_ids:
+			result = _get_island_ids(neighbour, result)
+	return result
