@@ -109,7 +109,6 @@ func set_galaxy_rect(_v) -> void:
 
 ################################################################# BUILT-IN METHODS #######################################################
 ################################################################# PUBLIC METHODS #########################################################
-################################################################# PRIVATE METHODS ########################################################
 func generate() -> void:
 	system_positions.clear()
 	system_path.clear()
@@ -118,6 +117,7 @@ func generate() -> void:
 	_generate_system_connections()
 	_galaxy_ready = true
 
+################################################################# PRIVATE METHODS ########################################################
 # TODO: Improve separation and connection vectors calculation
 func _generate_system_positions() -> void:
 	var systems_to_generate := players_count * systems_per_player
@@ -202,7 +202,7 @@ func _generate_system_connections() -> void:
 				#NOTE: I have to update current system connections because it's passed by value not reference from get_point_connections
 				current_sys_connection_ids = system_path.get_point_connections(current_sys_id)
 		
-	_connect_possible_islands()
+	_connect_separate_system_groups()
 
 
 func _extend_search_connections(current_sys_pos: Vector2, extension_range: Vector2) -> Array:
@@ -222,16 +222,52 @@ func _extend_search_connections(current_sys_pos: Vector2, extension_range: Vecto
 		return _extend_search_connections(current_sys_pos, extension_range + Vector2.ONE)
 
 
-func _connect_possible_islands() -> void:
-	var island1 = _get_island_ids(0)
-	print(island1.sort())
+func _connect_separate_system_groups() -> void:
+	var group: PoolIntArray = _get_group_ids(0)	# I have to start somwhere
+	while group.size() != system_positions.size():
+		for id in system_positions.size():
+			if !id in group:
+				var sub_group: PoolIntArray = _get_group_ids(id)
+				_make_best_connection(group, sub_group)
+				group.append_array(sub_group)
+	
+	if group.size() == system_positions.size():
+		print("All groups connected")
+	else:
+		print("Not all groups connected. Something went wrong.")
 
 
-func _get_island_ids(start_id: int, travelled_ids: Array = []) -> Array:
-	var result := travelled_ids
-	result.append(start_id)
+func _get_group_ids(start_id: int, travelled_ids: Array = []) -> Array:
+	travelled_ids.append(start_id)
 	var neighbours := system_path.get_point_connections(start_id)
 	for neighbour in neighbours:
 		if !neighbour in travelled_ids:
-			result = _get_island_ids(neighbour, result)
+			travelled_ids = _get_group_ids(neighbour, travelled_ids)
+	return travelled_ids
+
+
+#NOTE: This function checks all possible options for connections. For now I don't know smarter and faster way of acheving this.
+func _make_best_connection(from_group: Array, to_group: Array) -> void:
+	var valid_ids_from_group := _get_system_ids_with_free_connections(from_group)
+	var valid_ids_to_group := _get_system_ids_with_free_connections(to_group)
+	var best_distance := 9999999999999999.9
+	var best_from_id := 0
+	var best_to_id := 0
+	for from_id in valid_ids_from_group:
+		for to_id in valid_ids_to_group:
+			var from_pos: Vector2 = system_positions[from_id]
+			var to_pos: Vector2 = system_positions[to_id]
+			var distance := from_pos.distance_squared_to(to_pos)
+			if distance < best_distance:
+				best_from_id = from_id
+				best_to_id = to_id
+				best_distance = distance
+	system_path.connect_points(best_from_id, best_to_id)
+
+
+func _get_system_ids_with_free_connections(group: Array) -> Array:
+	var result := []
+	for id in group:
+		if system_path.get_point_connections(id).size() < ConnectionsPerSystem.MAX:
+			result.append(id)
 	return result

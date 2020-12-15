@@ -44,7 +44,7 @@ func update() -> void:
 	for id in range(Data.system_positions.size()):
 		var from_pos: Vector2 = grid.get_child(id).position
 		var system_connections := Data.system_path.get_point_connections(id)
-		print("System %d, has %d connections" % [id, system_connections.size()])
+#		print("System %d, has %d connections" % [id, system_connections.size()])
 		for connection_id in system_connections:
 			if connection_id < id:
 				continue
